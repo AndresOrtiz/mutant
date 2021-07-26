@@ -1,0 +1,15 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mongo1:27017,mongo2:27018,mongo3:27019/?replicaSet=rs0&retryWrites=true
+      database: mutant
+  webflux:
+    base-path: /mercadolibre
+
+springdoc:
+  show-actuator: true
+
+security:
+  default:
+    username: admin
+    password: Tzzu65mk6CVFf5Dj

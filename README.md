@@ -38,7 +38,7 @@ password: Tzzu65mk6CVFf5Dj
 
 The following resources are available:
 
-* [Swagger documentation](http://localhost:8080/swagger-ui.html)
+* [Swagger documentation](http://localhost:8080/mercadolibre/swagger-ui.html)
 * [OpenApi JSON documentation](http://localhost:8080/mercadolibre/v3/api-docs/)
   
 A postman collection with the endpoints can be found in the ```postman``` folder

@@ -1,6 +1,5 @@
 package com.mercado.mutant.web.handlers;
 
-import com.mercado.mutant.config.WebfluxSecurityConfig;
 import com.mercado.mutant.model.DnaSequence;
 import com.mercado.mutant.model.Stats;
 import com.mercado.mutant.services.HumanService;
@@ -11,7 +10,6 @@ import com.mercado.mutant.web.routers.MutantRouterConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationContext;
@@ -24,18 +22,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.newArrayList;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.security.test.web.reactive.server.SecurityMockServerConfigurers.springSecurity;
-import static org.springframework.web.reactive.function.client.ExchangeFilterFunctions.basicAuthentication;
 
 @WebFluxTest
-@ContextConfiguration(classes = {MutantRouterConfig.class, MutantHandler.class, WebfluxSecurityConfig.class})
+@ContextConfiguration(classes = {MutantRouterConfig.class, MutantHandler.class})
 class MutantHandlerTest {
-
-    @Value("${security.default.username}")
-    private String username;
-
-    @Value("${security.default.password}")
-    private String password;
 
     @Autowired
     private ApplicationContext context;
@@ -50,11 +40,7 @@ class MutantHandlerTest {
 
     @BeforeEach
     void setUp() {
-        webTestClient = WebTestClient.bindToApplicationContext(context)
-                .apply(springSecurity())
-                .configureClient()
-                .filter(basicAuthentication(username, password))
-                .build();
+        webTestClient = WebTestClient.bindToApplicationContext(context).build();
     }
 
     @Test
